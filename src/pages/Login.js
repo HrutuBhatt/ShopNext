@@ -30,11 +30,11 @@ const Login = () => {
         // Redirect based on role
         if (data.user.role === "admin") {
           navigate("/admin-dashboard");
-        } else if(data.user.role=="customer"){
+        } else if(data.user.role==="customer"){
           navigate("/customer-dashboard");
         }
         else if(data.user.role==="seller"){
-            navigate("/customer-dashboard")
+            navigate("/seller-dashboard")
         }
       } else {
         alert("Invalid username or password!");
