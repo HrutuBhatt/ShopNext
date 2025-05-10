@@ -7,23 +7,60 @@ import Signup from './pages/Signup';
 import AdminDashboard from './admin/admin-dashboard';
 import CustomerDashboard from './customer/customer-dashboard';
 import SellerDashboard from './seller/seller-dashboard';
-import Navbar from './components/navbar';
+import Navbar from './components/NavbarRedirect';
+import ProtectedRoute from './components/ProtectedRoute';
+import AddCategory from './admin/AddCategory';
+import CategoryList from './admin/CategoryList';
+import AddProduct from './seller/AddProduct';
+import UploadImage from './seller/UploadImage';
+import ViewProduct from './customer/ViewProduct';
+import Cart from './customer/Cart';
 function App() {
   return (
     <div className="App">
       <UserProvider>
         <Router>
+          <Navbar />
           <Routes>
             <Route path="/login" element={<Login/>}/>
-            <Route path="signup" element={<Signup/>}/>
-            <Route path="/" element={<h1>Welcome to ShopNext.. Please Login.</h1>}/>
-            <Route path="/products" element={<h1>Products</h1>}/>
-            <Route path="/about" element={<h1>About</h1>}/>
-            <Route path="/contact" element={<h1>Contact</h1>}/>
-            <Route path="/admin-dashboard" element={<AdminDashboard/>}/>
-            <Route path="/customer-dashboard" element={<CustomerDashboard/>}/>
-            <Route path="/seller-dashboard" element={<SellerDashboard/>}/>
+            <Route path="/signup" element={<Signup/>}/>
+            <Route path="/" element={<Login/>}/>
+            <Route
+              path="/seller-dashboard"
+              element={
+                <ProtectedRoute allowedRoles={["seller"]}>
+                  <SellerDashboard />
+                </ProtectedRoute>
+              }
+            />
+
+
+            <Route
+              path="/customer-dashboard"
+              element={
+                <ProtectedRoute allowedRoles={["customer"]}>
+                  <CustomerDashboard />
+                </ProtectedRoute>
+              }
+            />
+
+            <Route
+              path="/admin-dashboard"
+              element={
+                <ProtectedRoute allowedRoles={["admin"]}>
+                  <AdminDashboard />
+                </ProtectedRoute>
+              }
+            />
+            <Route path="/add-category" element={ <ProtectedRoute allowedRoles={["admin"]}> <AddCategory />  </ProtectedRoute>} /> 
+            <Route path="/categories" element={ <ProtectedRoute allowedRoles={["admin"]}> <CategoryList />  </ProtectedRoute>} /> 
+            <Route path="/add-product" element={ <ProtectedRoute allowedRoles={["seller"]}> <AddProduct />  </ProtectedRoute>} /> 
+            <Route path="/products" element={ <ProtectedRoute allowedRoles={["seller"]}> <AddProduct />  </ProtectedRoute>} /> 
+            <Route path="/upload-image/:productId" element={<ProtectedRoute allowedRoles={["seller"]}> <UploadImage /> </ProtectedRoute>} />
+            <Route path="/product/:productId" element={<ProtectedRoute allowedRoles={["customer"]}> <ViewProduct /> </ProtectedRoute>} />
+            <Route path="/cart" element={<ProtectedRoute allowedRoles={["customer"]}> <Cart /> </ProtectedRoute>} />
           </Routes>
+         
         </Router>
       </UserProvider>
     </div>
