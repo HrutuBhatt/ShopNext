@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import {
-  Box,
   Button,
   Container,
   MenuItem,
@@ -19,6 +18,8 @@ const AddProduct = () => {
   });
 
   const [categories, setCategories] = useState([]);
+  const user = JSON.parse(localStorage.getItem("user"));
+
   const token = localStorage.getItem("token");
   // Fetch categories from backend
   useEffect(() => {
@@ -30,7 +31,7 @@ const AddProduct = () => {
       .then((res) => res.json())
       .then((data) => setCategories(data))
       .catch((err) => console.error("Error loading categories:", err));
-  }, []);
+  }, [token]);
 
   const handleChange = (e) => {
     setProduct({ ...product, [e.target.name]: e.target.value });
@@ -46,6 +47,7 @@ const AddProduct = () => {
       price: parseFloat(product.price),
       stock: parseInt(product.stock),
       category: { category_id: parseInt(product.categoryId) },
+      user: {user_id: parseInt(user.user_id)}
     };
 
     try {

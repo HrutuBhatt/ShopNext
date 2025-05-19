@@ -15,6 +15,10 @@ import AddProduct from './seller/AddProduct';
 import UploadImage from './seller/UploadImage';
 import ViewProduct from './customer/ViewProduct';
 import Cart from './customer/Cart';
+import MyOrders from './customer/Orders';
+import ProductList from './seller/ProductList';
+import SellerOrders from './seller/SellerOrders';
+import SellerAnalytics from './seller/Analytics';
 function App() {
   return (
     <div className="App">
@@ -54,11 +58,17 @@ function App() {
             />
             <Route path="/add-category" element={ <ProtectedRoute allowedRoles={["admin"]}> <AddCategory />  </ProtectedRoute>} /> 
             <Route path="/categories" element={ <ProtectedRoute allowedRoles={["admin"]}> <CategoryList />  </ProtectedRoute>} /> 
+
             <Route path="/add-product" element={ <ProtectedRoute allowedRoles={["seller"]}> <AddProduct />  </ProtectedRoute>} /> 
-            <Route path="/products" element={ <ProtectedRoute allowedRoles={["seller"]}> <AddProduct />  </ProtectedRoute>} /> 
+            <Route path="/products" element={ <ProtectedRoute allowedRoles={["seller"]}> <ProductList />  </ProtectedRoute>} /> 
             <Route path="/upload-image/:productId" element={<ProtectedRoute allowedRoles={["seller"]}> <UploadImage /> </ProtectedRoute>} />
+            <Route path="/seller-orders" element={<ProtectedRoute allowedRoles={["seller"]}> <SellerOrders/> </ProtectedRoute>} />
+            <Route path="/analytics" element={<ProtectedRoute allowedRoles={["seller"]}> <SellerAnalytics/> </ProtectedRoute>} />
+
+
             <Route path="/product/:productId" element={<ProtectedRoute allowedRoles={["customer"]}> <ViewProduct /> </ProtectedRoute>} />
             <Route path="/cart" element={<ProtectedRoute allowedRoles={["customer"]}> <Cart /> </ProtectedRoute>} />
+            <Route path="/orders" element={<ProtectedRoute allowedRoles={["customer"]}> <MyOrders /> </ProtectedRoute>} />
           </Routes>
          
         </Router>

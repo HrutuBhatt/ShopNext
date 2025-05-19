@@ -29,6 +29,9 @@ const SellerNavbar = () => {
           <Button color="inherit" component={Link} to="/add-product">
             Add Product
           </Button>
+          <Button color="inherit" component={Link} to="/seller-orders">
+            Orders
+          </Button>
           <Button color="inherit" component={Link} to="/analytics">
             Analytics
           </Button>

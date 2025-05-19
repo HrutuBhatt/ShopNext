@@ -52,6 +52,7 @@ const Login = () => {
   return (
     <Container maxWidth="sm" sx={{ display: "flex", alignItems: "center", height: "100vh" }}>
       <Paper elevation={3} sx={{ padding: 4, width: "100%" }}>
+      <Typography variant="h3" align="center" gutterBottom>ShopNext</Typography><br/>
         <Typography variant="h5" align="center" gutterBottom>
           Login
         </Typography>
