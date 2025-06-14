@@ -41,7 +41,6 @@ A full-stack e-commerce platform built with **Spring Boot (Java)** and **React.j
 
 
 ## Future Enhancements
- **Product Recommendations**:
-  - Personalized suggestions based on search history, past orders, and popular trends.
- **Integrating Payment Gateway**: integrating seamless payment gateway such as Razorpay.
+ - **Product Recommendations**: Personalized suggestions based on search history, past orders, and popular trends.
+ - **Integrating Payment Gateway**: Integrating seamless payment gateway such as Razorpay.
 
