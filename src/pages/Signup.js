@@ -40,6 +40,19 @@ const Signup = () => {
 
   return (
     <Container maxWidth="sm" sx={{ mt: 8 }}>
+      <Typography
+        variant="h3"
+        align="center"
+        gutterBottom
+        sx={{
+          fontWeight: 'bold',
+          background: 'linear-gradient(90deg,rgb(107, 156, 255),rgb(28, 43, 248),rgb(17, 0, 130), rgb(101, 40, 175), rgb(116, 66, 185))',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+        }}
+      >
+        ShopNext
+      </Typography>
       <Paper elevation={3} sx={{ padding: 4 }}>
         <Typography variant="h5" align="center" gutterBottom>
           Sign Up

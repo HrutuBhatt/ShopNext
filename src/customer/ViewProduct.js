@@ -9,6 +9,7 @@ import {
   Box,
 } from "@mui/material";
 import { useParams } from "react-router-dom";
+import Feedback from "./Feedback"; 
 
 const ViewProduct = () => {
   const { productId } = useParams();
@@ -102,6 +103,10 @@ const ViewProduct = () => {
           <Typography variant="body2" color="textSecondary">
             {product.description}
           </Typography>
+          <br/>
+          <Typography variant="body2" >
+            <b>Product By:</b> {product.user.username}
+          </Typography>
           <Button
             variant="contained"
             color="primary"
@@ -113,6 +118,8 @@ const ViewProduct = () => {
           </Button>
         </CardContent>
       </Card>
+
+      <Feedback productId={productId} user={user}/>
     </Box>
   );
 };

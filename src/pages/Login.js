@@ -8,7 +8,9 @@ import {
   TextField,
   Typography,
   Paper,
+  Link,
 } from "@mui/material";
+import { Link as RouterLink } from "react-router-dom";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -51,8 +53,21 @@ const Login = () => {
 
   return (
     <Container maxWidth="sm" sx={{ display: "flex", alignItems: "center", height: "100vh" }}>
-      <Paper elevation={3} sx={{ padding: 4, width: "100%" }}>
-      <Typography variant="h3" align="center" gutterBottom>ShopNext</Typography><br/>
+      <Box>
+      <Typography
+        variant="h3"
+        align="center"
+        gutterBottom
+        sx={{
+          fontWeight: 'bold',
+          background: 'linear-gradient(90deg,rgb(107, 156, 255),rgb(28, 43, 248),rgb(17, 0, 130), rgb(57, 7, 119), rgb(89, 47, 148))',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+        }}
+      >
+        ShopNext
+      </Typography>
+      {/* <Paper elevation={3} sx={{ padding: 4, width: "100%" }}> */}
         <Typography variant="h5" align="center" gutterBottom>
           Login
         </Typography>
@@ -84,8 +99,16 @@ const Login = () => {
           >
             Login
           </Button>
+          <Typography variant="body2" align="center" sx={{ mt: 2 }}>
+            Don't have an account?{" "}
+            <Link component={RouterLink} to="/signup" underline="hover">
+              Sign up
+            </Link>
+          </Typography>
+
         </Box>
-      </Paper>
+      {/* </Paper> */}
+      </Box>
     </Container>
   );
 };

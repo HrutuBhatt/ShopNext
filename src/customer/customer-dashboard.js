@@ -9,6 +9,8 @@ import {
   Button,
   TextField,
   CircularProgress,
+  Chip,
+  Box
 } from "@mui/material";
 
 const CustomerDashboard = () => {
@@ -16,9 +18,18 @@ const CustomerDashboard = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [loading, setLoading] = useState(true);
   const token = localStorage.getItem("token");
+  const user = JSON.parse(localStorage.getItem("user"));
+  const [searchHistory, setSearchHistory] = useState([]);
+
+
+  const headers = {
+    Authorization: `Bearer ${token}`,
+    "Content-Type": "application/json",
+  };
 
   useEffect(() => {
     fetchAllProducts();
+    fetchSearchHistory();
   }, []);
 
   const fetchAllProducts = async () => {
@@ -65,6 +76,38 @@ const CustomerDashboard = () => {
     product.name?.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
+   // Fetch user search history
+  const fetchSearchHistory = async () => {
+    try {
+      const res = await fetch(`/api/search-history/user/${user.user_id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          }
+        }
+      );
+      const history = await res.json();
+      setSearchHistory(history);
+    } catch (error) {
+      console.error("Error fetching search history:", error);
+    }
+  };
+
+  // Save search query to history
+  const saveSearchHistory = async (query) => {
+    try {
+      await fetch(`/api/search-history/add?userId=${user.user_id}&searchQuery=${query}`, {
+        method: "POST",
+        headers: {
+            Authorization: `Bearer ${token}`,
+        }
+      });
+      fetchSearchHistory(); // Refresh history
+    } catch (error) {
+      console.error("Error saving search history:", error);
+    }
+  };
+
   return (
     <Container maxWidth="lg" sx={{ mt: 4 }}>
       <Typography variant="h4" gutterBottom>
@@ -77,8 +120,39 @@ const CustomerDashboard = () => {
         placeholder="Search products"
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
-        sx={{ mb: 3 }}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            const trimmedQuery = searchQuery.trim();
+            if (trimmedQuery.length > 2) {
+              saveSearchHistory(trimmedQuery);
+            }
+          }
+        }}
+        sx={{ mb: 2 }}
       />
+
+      {/* Displaying Search History */}
+      {searchHistory.length > 0 && (
+        <Box sx={{ mb: 3 }}>
+          <Typography variant="subtitle1" sx={{ mb: 1 }}>
+            Recent Searches:
+          </Typography>
+          <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1 }}>
+            {searchHistory
+              .slice(-5) // Show last 5
+              .reverse()
+              .map((item) => (
+                <Chip
+                  key={item.search_id}
+                  label={item.searchQuery}
+                  variant="outlined"
+                  onClick={() => setSearchQuery(item.searchQuery)}
+                />
+              ))}
+          </Box>
+        </Box>
+      )}
+
 
       {loading ? (
         <CircularProgress />
