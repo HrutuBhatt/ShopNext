@@ -48,7 +48,7 @@ A full-stack e-commerce platform built with **Spring Boot (Java)** and **React.j
 ## 📦 Project Structure
 - This repo contains project **frontend**.
 - **Backend**:
-[Link: another repo](www.github.com/HrutuBhatt/ShopNext-Backend)
+[Link: another repo]([www.github.com/HrutuBhatt/ShopNext-Backend](https://github.com/HrutuBhatt/ShopNext-Backend))
 
 
 ## Future Enhancements
