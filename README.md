@@ -21,6 +21,9 @@ A full-stack e-commerce platform built with **Spring Boot (Java)** and **React.j
   - Sellers get notified about pending orders.
 - **Material UI**: Clean, responsive, and intuitive UI with Material-UI components.
 
+## 🔗 Video Link
+[link](https://drive.google.com/file/d/1ERdrvX6dpcnx9cJm6bqgTktIPPGG9aSo/view?usp=sharing)
+
 ## Images
 ![Screenshot_20250621_171856](https://github.com/user-attachments/assets/15a04e05-30a4-4f88-89a3-e27d0b2f2d4f)
 ![Screenshot_20250621_171921](https://github.com/user-attachments/assets/7e8021cc-5f29-4ff4-8000-8006b4f778c7)
